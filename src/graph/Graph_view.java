@@ -144,6 +144,7 @@ public class Graph_view extends Frame implements ActionListener, WindowListener{
 			cpanel.setChart(chart);
 			add(cpanel, BorderLayout.CENTER);
 		}
+		repaint();
 	}
 
 }

@@ -28,16 +28,7 @@ public class Graph_view extends Frame implements ActionListener, WindowListener{
 		data.addValue(320,  "China", "2007");
 		return data;
 	}
-
-	public Graph_view() {
-		addWindowListener(this);
-		setTitle("Graph");
-		setLayout(new FlowLayout(FlowLayout.CENTER));
-		add(button1);
-		add(button2);
-		button1.addActionListener(this);
-		button2.addActionListener(this);
-
+	private JFreeChart chart() {
 		JFreeChart chart = ChartFactory.createBarChart(
 				"Import Volume",
 				"Year",
@@ -48,8 +39,31 @@ public class Graph_view extends Frame implements ActionListener, WindowListener{
 				false,
 				false
 			);
+		return chart;
+	}
+	private ChartPanel cpanel = new ChartPanel(chart());
 
-		ChartPanel cpanel = new ChartPanel(chart);
+	public Graph_view() {
+		addWindowListener(this);
+		setTitle("Graph");
+		setLayout(new FlowLayout(FlowLayout.CENTER));
+		add(button1);
+		add(button2);
+		button1.addActionListener(this);
+		button2.addActionListener(this);
+
+//		JFreeChart chart = ChartFactory.createBarChart(
+//				"Import Volume",
+//				"Year",
+//				"Ton",
+//				data(),
+//				PlotOrientation.VERTICAL,
+//				true,
+//				false,
+//				false
+//			);
+
+//		ChartPanel cpanel = new ChartPanel(chart());
 		add(cpanel, BorderLayout.CENTER);
 
 	}
@@ -100,6 +114,7 @@ public class Graph_view extends Frame implements ActionListener, WindowListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == button1) {
+			remove(cpanel);
 			JFreeChart chart = ChartFactory.createBarChart(
 					"Import Volume",
 					"Year",
@@ -111,9 +126,10 @@ public class Graph_view extends Frame implements ActionListener, WindowListener{
 					false
 				);
 
-			ChartPanel cpanel = new ChartPanel(chart);
+			cpanel.setChart(chart);
 			add(cpanel, BorderLayout.CENTER);
 		}else if(e.getSource() == button2) {
+			remove(cpanel);
 			JFreeChart chart = ChartFactory.createLineChart(
 					"Import Volume",
 					"Year",
@@ -125,7 +141,7 @@ public class Graph_view extends Frame implements ActionListener, WindowListener{
 					false
 				);
 
-			ChartPanel cpanel = new ChartPanel(chart);
+			cpanel.setChart(chart);
 			add(cpanel, BorderLayout.CENTER);
 		}
 	}

@@ -63,7 +63,7 @@ public class Graph_view extends Frame implements ActionListener, WindowListener{
 //				false
 //			);
 
-//		ChartPanel cpanel = new ChartPanel(chart());
+//		ChartPanel cpanel = new ChartPanel(chart);
 		add(cpanel, BorderLayout.CENTER);
 
 	}
@@ -115,18 +115,7 @@ public class Graph_view extends Frame implements ActionListener, WindowListener{
 		// TODO Auto-generated method stub
 		if(e.getSource() == button1) {
 			remove(cpanel);
-			JFreeChart chart = ChartFactory.createBarChart(
-					"Import Volume",
-					"Year",
-					"Ton",
-					data(),
-					PlotOrientation.VERTICAL,
-					true,
-					false,
-					false
-				);
-
-			cpanel.setChart(chart);
+			cpanel.setChart(chart());
 			add(cpanel, BorderLayout.CENTER);
 		}else if(e.getSource() == button2) {
 			remove(cpanel);
